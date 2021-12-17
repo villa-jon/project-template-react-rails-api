@@ -6,7 +6,7 @@
 puts "Seeding...."
 
 Shelter.create(address: "1253 S. Jackson Street", rating: 5, description: "Urban Rest Stops: Provide showers, laundry, restrooms, and other hygiene services along with housing, employment, and shelter resources.", 
-name: "Low-Income Housing Institute")
+name: "Low-Income Housing Institute", url: "https://urbanreststop.org/")
 
 Review.create(comment: "ew!", rating: 5)
 

@@ -35,7 +35,7 @@ class ReviewsController < ApplicationController
 	end
 
 	def review_params
-		params.permit(:title, :image, :description, :notes)
+		params.permit(:comment, :rating)
 	end 
 
 	def render_not_found_response

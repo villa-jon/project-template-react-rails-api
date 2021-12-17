@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(version: 2021_12_07_035207) do
 
   create_table "residents", force: :cascade do |t|
     t.string "name"
+    t.string "password_digest"
     t.string "age"
     t.string "email"
     t.datetime "created_at", precision: 6, null: false
@@ -35,6 +36,7 @@ ActiveRecord::Schema.define(version: 2021_12_07_035207) do
     t.integer "rating"
     t.string "description"
     t.string "name"
+    t.string "url"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

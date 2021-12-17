@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::API
   include ActionController::Cookies
-
+#   before_action :authenticate_user!, except: [:new, :create]
   before_action :authorized
 
     def encode_token(payload)
