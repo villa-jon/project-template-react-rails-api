@@ -6,20 +6,24 @@ function Login({ onLogin, resident }) {
 	const [name, setUsername] = useState("");
 	const [password, setPassword] = useState("");
 
-
 	function handleSubmit(e) {
 		e.preventDefault();
-			fetch("/residents", {
+			fetch("/login", {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
 			},
-			body: JSON.stringify({ name }),
-			}).then((r) => {
-			if (r.ok) {
-				r.json().then((resident) => onLogin(resident));
-			}
-		});
+			body: JSON.stringify({ name: name, password: password }),
+			}).then(response => response.json()).then(data => console.log(data))
+			// .then(response => console.log(response))
+		// 	.then((r) => {
+		// 	if (r.ok) {
+		// 		r.json().then((resident) => {
+		// 			console.log(resident)
+		// 			onLogin(resident)
+		// 		});
+		// 	}
+		// });
 	}
 
 	return (

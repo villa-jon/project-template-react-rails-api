@@ -1,9 +1,9 @@
 class AuthController < ApplicationController
 
     def create
-        
-        @resident = Resident.find_by(username: params[:username])
 
+        @resident = Resident.find_by(name: params[:name])
+   
         if @resident && @resident.authenticate(params[:password])
             my_token = encode_token({resident_id: @resident.id})
             # cardstacks = CardStack.where(user_id: @user.id)

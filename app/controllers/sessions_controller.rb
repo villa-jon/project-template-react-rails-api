@@ -23,4 +23,13 @@ class SessionsController < ApplicationController
 		head :no_content
 	end 
 
+
+	private 
+
+	def resident_params
+		params.permit(
+			# :name, :username, :email, :password, :password_confirmation
+			:name, :password, :age, :email, :password_confirmation
+			)
+	end 
 end

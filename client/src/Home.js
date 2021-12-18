@@ -21,6 +21,7 @@ function Home() {
 
 	function handleLogin(user) {
 		setUser(user);
+		console.log(user)
 	      }
 	   
 	function handleLogout() {

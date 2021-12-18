@@ -36,7 +36,10 @@ function Signup({ setUser }) {
       }),
     }).then((r) => {
       if (r.ok) {
-        r.json().then((user) => setUser(user));
+        r.json().then((user) => {
+          setUser(user)
+          console.log("push the user to the next page")
+        });
       }
     });
   }
