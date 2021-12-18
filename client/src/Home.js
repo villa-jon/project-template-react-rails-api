@@ -1,6 +1,8 @@
 import React, {useEffect, useState} from "react"
 import Image from 'react-bootstrap/Image'
 import Login from './Login'
+import Signup from './Signup'
+
 import kids from "./kids.png";
 
 function Home() {
@@ -30,9 +32,8 @@ function Home() {
 			<Login
 			onLogin={handleLogin}
 			onLogout={handleLogout}
-			resdient={user}
-			serUser={setUser}
-			/>
+			resdient={user}/>
+			<Signup setUser={setUser}/>
 			<br/>
 			<Image src={kids} className="kids-style" rounded/>
 		</div>

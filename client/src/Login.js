@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import { Form, Button } from "react-bootstrap"
 // import { useHistory } from "react-router-dom";
 
-function Login({ onLogin }) {
+function Login({ onLogin, resident }) {
 	const [name, setUsername] = useState("");
 	const [password, setPassword] = useState("");
 
@@ -17,7 +17,7 @@ function Login({ onLogin }) {
 			body: JSON.stringify({ name }),
 			}).then((r) => {
 			if (r.ok) {
-				r.json().then((user) => onLogin(user));
+				r.json().then((resident) => onLogin(resident));
 			}
 		});
 	}

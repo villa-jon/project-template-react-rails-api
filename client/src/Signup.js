@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { Button, Form} from 'react-bootstrap'
 
-
-function Signup({ onLogin }) {
+function Signup({ setUser }) {
   const [name, setUsername] = useState("");
   const [age, setAge] = useState("");
   const [email, setEmail] = useState("")
@@ -37,7 +36,7 @@ function Signup({ onLogin }) {
       }),
     }).then((r) => {
       if (r.ok) {
-        r.json().then((user) => onLogin(user));
+        r.json().then((user) => setUser(user));
       }
     });
   }

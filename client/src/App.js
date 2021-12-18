@@ -25,7 +25,7 @@ function App() {
     }, []);
 
   let displayHousing = shelters.filter(
-    w => w.name.toLowerCase())
+    w => w.name.toLowerCase().includes(search.toLowerCase()))
   console.log(displayHousing)
 
   function handleAddHouse(newHouse) {
