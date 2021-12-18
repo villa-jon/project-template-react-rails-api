@@ -1,111 +1,114 @@
-import React, {useState} from 'react'
-import { Form, Button } from "react-bootstrap"
-// import { useHistory } from "react-router-dom";
+import { useState } from "react";
+import { Button, Form} from 'react-bootstrap'
 
-function Signup() {
-	const [fields, handleFieldChange] = useState({
-		name: "",
-		password: "",
-		confirmPassword: "",
-		confirmationCode: "",
-	      });
-	//       const history = useHistory();
-	      const [newUser, setNewUser] = useState(null);
-	//       const { userHasAuthenticated } = useAppContext();
-	      const [isLoading, setIsLoading] = useState(false);
-	    
-	      function validateForm() {
-		return (
-		  fields.email.length > 0 &&
-		  fields.password.length > 0 &&
-		  fields.password === fields.confirmPassword
-		);
-	      }
-	    
-	      function validateConfirmationForm() {
-		return fields.confirmationCode.length > 0;
-	      }
-	    
-	      async function handleSubmit(event) {
-		event.preventDefault();
-	    
-		setIsLoading(true);
-	    
-		setNewUser("test");
-	    
-		setIsLoading(false);
-	      }
-	    
-	      async function handleConfirmationSubmit(event) {
-		event.preventDefault();
-	    
-		setIsLoading(true);
-	      }
-	
-	      function renderConfirmationForm() {
-		return (
-		  <Form onSubmit={handleConfirmationSubmit}>
-		    <Form.Group controlId="confirmationCode" size="lg">
-		      <Form.Label>Confirmation Code</Form.Label>
-		      <Form.Control
-			autoFocus
-			type="tel"
-			onChange={handleFieldChange}
-			value={fields.confirmationCode}
-		      />
-		      <Form.Text muted>Please check your email for the code.</Form.Text>
-		    </Form.Group>
-		    <Button 
-			isLoading={isLoading}
-			disabled={!validateConfirmationForm}
-		    	type="submit"></Button>
-		  </Form>
-		);
-	      }
-	
-	      function renderForm() {
-		return (
-		  <Form onSubmit={handleSubmit}>
-		    <Form.Group controlId="email" size="lg">
-		      <Form.Label>Email</Form.Label>
-		      <Form.Control
-			autoFocus
-			type="email"
-			value={fields.email}
-			onChange={handleFieldChange}
-		      />
-		    </Form.Group>
-		    <Form.Group controlId="password" size="lg">
-		      <Form.Label>Password</Form.Label>
-		      <Form.Control
-			type="password"
-			value={fields.password}
-			onChange={handleFieldChange}
-		      />
-		    </Form.Group>
-		    <Form.Group controlId="confirmPassword" size="lg">
-		      <Form.Label>Confirm Password</Form.Label>
-		      <Form.Control
-			type="password"
-			onChange={handleFieldChange}
-			value={fields.confirmPassword}
-		      />
-		    </Form.Group>
-		    <br/>
-		    <Button 
-			isLoading={isLoading}
-			disabled={!validateForm}
-			type="submit">Submit</Button>
-		  </Form>
-		);
-	      }
 
-	return(
-		<div className="Signup">
-		<h3>Sign Up here!</h3>
-      		{newUser === null ? renderForm() : renderConfirmationForm()}
-    		</div>
-	)
+function Signup({ onLogin }) {
+  const [name, setUsername] = useState("");
+  const [age, setAge] = useState("");
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [passwordConfirmation, setPasswordConfirmation] = useState("");
+
+  const faqStyle = {
+		display: 'flex', 
+		alignItems: 'center', 
+		justifyContent: "center",
+		flexDirection: 'column',
+		paddingTop: '20px',
+		fontFamily: 'Montserrat',
+		fontWeight: 'bolder'
+	}
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    console.log()
+    fetch("/residents", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ 
+        name,
+        age,
+        email,
+        password, 
+        password_confirmation: passwordConfirmation
+
+      }),
+    }).then((r) => {
+      if (r.ok) {
+        r.json().then((user) => onLogin(user));
+      }
+    });
+  }
+
+  return (
+    <Form 
+    style={faqStyle}
+    onSubmit={handleSubmit}>
+      <h3>Sign Up </h3>
+      {/* <label htmlFor="username"> Username: </label>
+      <br/>
+      <input
+        type="text"
+      /> */}
+        <Form.Group className="mb-3" >
+       <Form.Label>Username</Form.Label>
+       <Form.Control 
+        id="username"
+        value={name}
+        onChange={(w) => setUsername(w.target.value)} 
+        placeholder="Enter Username" />
+        <Form.Text className="text-muted">
+        </Form.Text>
+      </Form.Group>
+
+      <Form.Group className="mb-3" >
+       <Form.Label>Age</Form.Label>
+       <Form.Control 
+        id="age"
+        value={age}
+        onChange={(w) => setAge(w.target.value)} 
+        placeholder="Enter Age" />
+        <Form.Text className="text-muted">
+        </Form.Text>
+      </Form.Group>
+
+      <Form.Group className="mb-3" >
+       <Form.Label>E-Mail</Form.Label>
+       <Form.Control 
+        id="email"
+        value={email}
+        onChange={(w) => setEmail(w.target.value)} 
+        placeholder="Enter Email" />
+        <Form.Text className="text-muted">
+        </Form.Text>
+      </Form.Group>
+
+      <Form.Group className="mb-3">
+        <Form.Label>Password</Form.Label>
+        <Form.Control 
+        type="password" 
+        id="password"
+        value={password}
+        onChange={(w)=>setPassword(w.target.value)}
+        placeholder="Password" />
+      </Form.Group>
+
+      <Form.Group className="mb-3">
+        <Form.Label htmlFor="password_confirmation">Confirm Password</Form.Label>
+        <Form.Control
+          type="password"
+          id="password_confirmation"
+          value={passwordConfirmation}
+          onChange={(e) => setPasswordConfirmation(e.target.value)}
+        />
+      </Form.Group>
+      <br/>
+      <Button variant="primary" type="submit">Submit</Button>
+    </Form>
+  );
 }
+
 
 export default Signup

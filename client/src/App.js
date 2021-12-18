@@ -11,18 +11,10 @@ function App() {
   const [shelters, setShelters] = useState([])
   const [search, setSearch] = useState("")
 
-  let displayHousing = shelters.filter(
-    w => w.title.toLowerCase().includes(search.toLowerCase()))
-
   useEffect(() => {
     console.log("useEffect");
-    fetch("http://localhost:3000/shelters", {
+    fetch("/shelters", {
       method: "GET",
-      // headers: {
-      //   'Content-Type': 'application/json',
-      //   mode: 'cors',
-      //   credentials: 'include'
-      // },
     })
       .then((r) => r.json())
       .then((shelters) => {
@@ -31,6 +23,26 @@ function App() {
       console.log(shelters)
       })
     }, []);
+
+  let displayHousing = shelters.filter(
+    w => w.name.toLowerCase())
+  console.log(displayHousing)
+
+  function handleAddHouse(newHouse) {
+      const updatedArray = [...shelters, newHouse];
+      setShelters(updatedArray);
+          }
+  
+  function handleUpdate(update) {
+     const updatedHArray = shelters.map((shelter) => {
+        if (shelter.id === update.id) {
+           return update;
+              } else {
+          return shelter;
+          }
+      });
+      setShelters(updatedHArray);
+  }
 
   return (
     <div className="App">
@@ -42,11 +54,17 @@ function App() {
           // user={user}
           // onLogout={handleLogout}
         />} />
-        <Route path="/housing" 
+        <Route 
+        className="sixteen wide column centered"
+        path="/housing" 
         element={<Housing
         search = {search}
+        addHousing={handleAddHouse}
+        updatedAr={handleUpdate}
+        setShelters = {setShelters}
         setSearch = {setSearch}
         shelters = {displayHousing}
+        // handleUpdate={updatedArray}
         />}/>
         <Route path="/about" 
         element={<About/>}/>

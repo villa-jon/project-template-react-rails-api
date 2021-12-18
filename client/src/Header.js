@@ -13,7 +13,8 @@ function Header({shelters, search, setSearch}) {
 		flexDirection: 'column',
 		paddingTop: '20px',
 		fontFamily: 'Montserrat',
-		fontWeight: 'bolder'
+		fontWeight: 'bolder',
+		backgroundColor: "#A7C7E7"
 	}
 
 	return (

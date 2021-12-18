@@ -1,5 +1,4 @@
 class ResidentsController < ApplicationController
-	skip_before_action :authorize, only: :create
 	# rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
 
 	def index
@@ -9,23 +8,27 @@ class ResidentsController < ApplicationController
 
 
 	def create
-		resident = Resident.create!(user_params)
+		resident = Resident.create(resident_params)
 		session[:resident_id] = resident.id
 		render json: resident, status: :created
 	end
 
-  	def show
-  		render json: @current_resident
-  	end
+  	# def show
+  	# 	render json: 
+  	# end
 
 	def show
-		resident = Resident.find(params[:id])
-		render json: resident
+		@currrent_resident = Resident.find(params[:id])
+		render json: @current_resident
 	end
 
-	# def destroy
-	# 	@resident.destroy
-	# end 
+	def password=(new_password)
+		self.password_digest = dumb_hash(new_password)
+	end
+
+	def destroy
+		@resident.destroy
+	end 
 
 	private 
 
@@ -41,6 +44,10 @@ class ResidentsController < ApplicationController
 			:name, :password, :age, :email, :password_confirmation
 			)
 	end 
+
+	def dumb_hash(input)
+		input.bytes.reduce(:+)
+	end
 
 	def render_not_found_response
 		render json: { error: "Resident not found" }, status: :not_found

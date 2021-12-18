@@ -1,10 +1,11 @@
 class SheltersController < ApplicationController
+	# binding.pry
 	rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
-	skip_before_action :authorized, only: [:create, :destroy, :show, :index]
 
 	def index
 		shelters = Shelter.all
-		render json: shelters, each_serializer: SheltersSerializer
+		render json: shelters
+		
 	end
 
 	def show
@@ -13,8 +14,7 @@ class SheltersController < ApplicationController
 	end
 
 	def create
-		shelter = find_shelter
-		shelter.update(shelter_params)
+		shelter = Shelter.create(shelter_params)
 		render json: shelter
 	end 
 
@@ -30,7 +30,7 @@ class SheltersController < ApplicationController
 		Shelter.find_by(id: params[:id])
 	end 
 	
-	def sheler_params
+	def shelter_params
 		params.permit(:address, :rating, :description, :name, :url)
 	end 
 

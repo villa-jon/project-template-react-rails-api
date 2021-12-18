@@ -3,6 +3,6 @@ class Shelter < ApplicationRecord
 	has_many :residents
 
 	validates :name, presence: true, uniqueness: true 
-	validates :description, length: { minimum: 250 }
- 
+	validates :description, length: { maximum: 250 }
+
 end

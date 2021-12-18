@@ -1,21 +1,21 @@
 import React from "react"
+import "./HousingCard.css"
 import { Card, Button } from "react-bootstrap"
 
 function HousingCard({shelters}){
-	const shelter = shelters.map((shelters) => 
+	const housing = shelters.map((shelter) => 
 		<div className="cardParent">
-		<Card border="dark" className="card" key={shelters.id} >
-		<Card.Img variant="top" src = {shelters.image} placeholder={"holder.js/100px180"}/>
+		<Card border="dark" className="card" key={shelter.id} >
 		<div className="cardText">
 		<Card.Body className="cardText">
 			<Card.Title>{shelter.name}</Card.Title>
 			<Card.Text >
-				{shelters.description.length > 50 ? <li>
-				{shelters.description.substring(0, 15) + "..." }
-				</li> : <li>{shelters.description}</li> }
-				<li>{shelters.created_at}</li>
+				{shelter.description.length > 50 ? <li>
+				{shelter.description.substring(0, 15) + "..." }
+				</li> : <li>{shelter.description}</li> }
+				<li>{shelter.created_at}</li>
 			</Card.Text>
-			<Button variant="primary" href={shelters.url}>Link</Button>
+			<Button variant="primary" href={shelter.url}>Link</Button>
 		</Card.Body>
 		</div>
 		</Card>					
@@ -23,7 +23,7 @@ function HousingCard({shelters}){
 	)
 		return(
 		<div className="newsCardStyle">
-			{shelter}				
+			{housing}				
 		</div>
 	)
 	}

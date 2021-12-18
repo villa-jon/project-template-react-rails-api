@@ -7,17 +7,20 @@ function Home() {
 	const [user, setUser] = useState(null);
 
 	useEffect(() => {
-		fetch("/me").then((response) => {
-		  if (response.ok) {
-		    response.json().then((user) => setUser(user));
-		  }
-		});
-	      }, []);
+		fetch("/residents", {
+			method: "GET",
+		})
+		  .then((user) => {
+		  setUser(user);
+		// setSearch(data.data);
+		  console.log(user)
+		  })
+		}, []);
 
 	function handleLogin(user) {
 		setUser(user);
 	      }
-	    
+	   
 	function handleLogout() {
 		setUser(null);
 	      }
@@ -28,6 +31,7 @@ function Home() {
 			onLogin={handleLogin}
 			onLogout={handleLogout}
 			resdient={user}
+			serUser={setUser}
 			/>
 			<br/>
 			<Image src={kids} className="kids-style" rounded/>
