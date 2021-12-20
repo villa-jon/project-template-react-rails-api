@@ -1,3 +1,3 @@
 class ResidentsSerializer < ActiveModel::Serializer
-  attributes :id, :name, :password_digest, :age, :email
+  attributes :id, :name, :password_digest
 end

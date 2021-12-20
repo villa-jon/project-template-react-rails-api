@@ -13,7 +13,6 @@ function NavBar() {
     });
   }
   
-
   return (
     <div className="navber">
      <Navbar expand="lg" bg="light" variant="light">

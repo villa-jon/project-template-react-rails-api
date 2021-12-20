@@ -28,8 +28,6 @@ function Signup({ setUser }) {
       },
       body: JSON.stringify({ 
         name,
-        age,
-        email,
         password, 
         password_confirmation: passwordConfirmation
 
@@ -61,28 +59,6 @@ function Signup({ setUser }) {
         value={name}
         onChange={(w) => setUsername(w.target.value)} 
         placeholder="Enter Username" />
-        <Form.Text className="text-muted">
-        </Form.Text>
-      </Form.Group>
-
-      <Form.Group className="mb-3" >
-       <Form.Label>Age</Form.Label>
-       <Form.Control 
-        id="age"
-        value={age}
-        onChange={(w) => setAge(w.target.value)} 
-        placeholder="Enter Age" />
-        <Form.Text className="text-muted">
-        </Form.Text>
-      </Form.Group>
-
-      <Form.Group className="mb-3" >
-       <Form.Label>E-Mail</Form.Label>
-       <Form.Control 
-        id="email"
-        value={email}
-        onChange={(w) => setEmail(w.target.value)} 
-        placeholder="Enter Email" />
         <Form.Text className="text-muted">
         </Form.Text>
       </Form.Group>
