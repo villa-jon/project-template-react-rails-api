@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import { Form, Button } from "react-bootstrap"
 // import { useHistory } from "react-router-dom";
 
-function Login({ onLogin, resident }) {
+function Login({ }) {
 	const [name, setUsername] = useState("");
 	const [password, setPassword] = useState("");
 
@@ -12,9 +12,25 @@ function Login({ onLogin, resident }) {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
+				"Accept" : "application/json"
 			},
-			body: JSON.stringify({ name: name, password: password }),
-			}).then(response => response.json()).then(data => console.log(data))
+			body: JSON.stringify({ 
+				name: name, 
+				password: password 
+			}),
+			}).then(response => response.json())
+			.then(resident => 
+				{
+				if (resident.resident){
+					console.log(resident.resident)
+				// loggedIn: !this.state.loggedIn,
+               			// "user": json.user.username,
+               			// userId: json.user.id
+				} else {
+					console.log(resident)
+				}
+			}
+			)
 			// .then(response => console.log(response))
 		// 	.then((r) => {
 		// 	if (r.ok) {

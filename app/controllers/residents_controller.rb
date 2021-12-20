@@ -1,5 +1,5 @@
 class ResidentsController < ApplicationController
-	# rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
+	rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
 
 	def index
 		residents = Resident.all
@@ -41,7 +41,7 @@ class ResidentsController < ApplicationController
 	def resident_params
 		params.permit(
 			# :name, :username, :email, :password, :password_confirmation
-			:name, :password, :age, :email, :password_confirmation
+			:name, :password, :password_confirmation
 			)
 	end 
 
