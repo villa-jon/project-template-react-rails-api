@@ -10,6 +10,18 @@ import About from './About'
 function App() {
   const [shelters, setShelters] = useState([])
   const [search, setSearch] = useState("")
+  // const [user, setUser] = useState(null);
+
+  // useEffect(() => {
+	// 	fetch("/residents", {
+	// 		method: "GET",
+	// 	})
+	// 	  .then((user) => {
+	// 	  setUser(user);
+	// 	// setSearch(data.data);
+	// 	  console.log(user)
+	// 	  })
+	// 	}, []);
 
   useEffect(() => {
     console.log("useEffect");
@@ -44,15 +56,24 @@ function App() {
       setShelters(updatedHArray);
   }
 
+  // function handleLogout() {
+	// 	setUser(null);
+
+  // function handleLogin(user) {
+	// 	setUser(user);
+	// 	console.log(user)
+	//       }
+
   return (
     <div className="App">
-      <NavBar/>
+      <NavBar
+      // onLogout={handleLogout}
+      />
       <Routes>
         <Route path="/" 
         element={<Home
           // onLogin={handleLogin}
           // user={user}
-          // onLogout={handleLogout}
         />} />
         <Route 
         className="sixteen wide column centered"

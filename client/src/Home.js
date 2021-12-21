@@ -18,21 +18,31 @@ function Home() {
 		  console.log(user)
 		  })
 		}, []);
+	
+	function logOut() {
+		fetch("/logout", { 
+		  method: "DELETE" })
+		  .then((r) => {
+		if (r.ok) {
+		  setUser(null);
+		  }
+		});
+	      }
 
 	function handleLogin(user) {
 		setUser(user);
 		console.log(user)
 	      }
 	   
-	function handleLogout() {
-		setUser(null);
-	      }
+	// function handleLogout() {
+	// 	setUser(null);
+	//       }
 
 	return (
 		<div className="Home">
 			<Login
 			onLogin={handleLogin}
-			onLogout={handleLogout}
+			onLogout={logOut}
 			resdient={user}/>
 			<Signup setUser={setUser}/>
 			<br/>

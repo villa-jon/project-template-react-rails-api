@@ -1,18 +1,10 @@
-import React, {useState} from "react";
+import React from "react";
 // import Login from './Login'
 import { NavLink } from "react-router-dom";
-import { Navbar, Container, Nav, Button } from "react-bootstrap";
+import { Navbar, Container, Nav } from "react-bootstrap";
 
 function NavBar() {
-  const [user, setUser] = useState(null)
-  function logOut() {
-    fetch("/logout", { method: "DELETE" }).then((r) => {
-    if (r.ok) {
-      setUser(null);
-      }
-    });
-  }
-  
+  // const [user, setUser] = useState(null)
   return (
     <div className="navber">
      <Navbar expand="lg" bg="light" variant="light">
@@ -26,12 +18,12 @@ function NavBar() {
               {/* <NavLink to="/catering" style={{padding: '10px'}}>Catering</NavLink> */}
            </Nav>
         </Container>
-        {user ? (
+        {/* {user ? (
         <Button type="submit" onClick={logOut}>Logout</Button>
       ) : (
         <NavLink to='/'>Login</NavLink>
       )
-      }  
+      }   */}
       </Navbar>    
     </div>
   );

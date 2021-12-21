@@ -3,7 +3,7 @@ class ApplicationController < ActionController::API
 #   before_action :authorized
 
   def encode_token(payload)
-      JWT.encode(payload, 'supa secretttt')
+      JWT.encode(payload, ':P')
   end 
 
   def auth_header
@@ -14,7 +14,7 @@ class ApplicationController < ActionController::API
       if auth_header
           token = auth_header.split(' ')[1]
           begin
-              JWT.decode(token, 'supa secretttt', true, algorithm: 'HS256')
+              JWT.decode(token, ':P', true, algorithm: 'HS256')
           rescue JWT::DecodeError
               nil
           end 

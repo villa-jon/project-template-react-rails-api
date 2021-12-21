@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import { Form, Button } from "react-bootstrap"
 // import { useHistory } from "react-router-dom";
 
-function Login({ }) {
+function Login({ onLogin, onLogout, user }) {
 	const [name, setUsername] = useState("");
 	const [password, setPassword] = useState("");
 
@@ -19,15 +19,12 @@ function Login({ }) {
 				password: password 
 			}),
 			}).then(response => response.json())
-			.then(resident => 
-				{
-				if (resident.resident){
-					console.log(resident.resident)
-				// loggedIn: !this.state.loggedIn,
-               			// "user": json.user.username,
-               			// userId: json.user.id
-				} else {
-					console.log(resident)
+			.then(resident => {
+				if (resident.ok) {
+					resident.json
+					.then(
+						(resident) => onLogin(resident) 
+					)
 				}
 			}
 			)
@@ -42,7 +39,7 @@ function Login({ }) {
 		// });
 	}
 
-	return (
+	return (<div>
 		<Form onSubmit={handleSubmit}>
 		<h3>Login With Username</h3>
 		<Form.Label>Username: </Form.Label>
@@ -54,13 +51,20 @@ function Login({ }) {
 		/>
 		<Form.Label>Password: </Form.Label>
 		<input
-			type="text"
+			type="password"
 			id="password"
 			value={password}
 			onChange={(e) => setPassword(e.target.value)}
 		/>
-		<Button type="submit">Login</Button>
+		{user ? (
+			<Button type="submit" onClick={onLogout}>Logout</Button>
+		) : (
+			<Button type="submit">Login</Button>
+		)
+		} 
 		</Form>
+		</div>
+		
 	);
 }
 
