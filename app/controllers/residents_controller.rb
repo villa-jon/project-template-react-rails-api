@@ -6,16 +6,11 @@ class ResidentsController < ApplicationController
 		render json: residents, status: 200
 	end
 
-
 	def create
 		resident = Resident.create(resident_params)
 		session[:resident_id] = resident.id
 		render json: resident, status: :created
 	end
-
-  	# def show
-  	# 	render json: 
-  	# end
 
 	def show
 		@currrent_resident = Resident.find(params[:id])
@@ -33,7 +28,7 @@ class ResidentsController < ApplicationController
 	private 
 
 	def find_resident
-		@resident = Resident.find_by_name!(params[:_name])
+		@resident = Resident.find_by_name(params[:_name])
 		rescue ActiveRecord::RecordNotFound
 		  render json: render_not_found_response
 	end 

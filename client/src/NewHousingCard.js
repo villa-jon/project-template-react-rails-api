@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Form, Button } from "react-bootstrap"
 
 function NewHousingCard({ addHousing }) {
   const [name, setName] = useState("");
@@ -29,7 +30,7 @@ function NewHousingCard({ addHousing }) {
   return (
     <div className="new-plant-form">
       <h2>New Shelters</h2>
-      <form onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit}>
         <input
           type="text"
           name="name"
@@ -65,8 +66,8 @@ function NewHousingCard({ addHousing }) {
           value={url}
           onChange={(e) => setUrl(e.target.value)}
         />
-        <button type="submit">Add</button>
-      </form>
+        <Button type="submit">Add</Button>
+      </Form>
     </div>
   );
 }

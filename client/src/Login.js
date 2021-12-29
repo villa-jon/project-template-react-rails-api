@@ -2,12 +2,12 @@ import React, {useState} from 'react'
 import { Form, Button } from "react-bootstrap"
 // import { useHistory } from "react-router-dom";
 
-function Login({ onLogin, onLogout, user }) {
-	const [name, setUsername] = useState("");
+function Login({ onLogin }) {
+	const [name, setUsername] = useState({ });
 	const [password, setPassword] = useState("");
 
-	function handleSubmit(e) {
-		e.preventDefault();
+	function handleSubmit(w) {
+		w.preventDefault();
 			fetch("/login", {
 			method: "POST",
 			headers: {
@@ -18,25 +18,18 @@ function Login({ onLogin, onLogout, user }) {
 				name: name, 
 				password: password 
 			}),
-			}).then(response => response.json())
-			.then(resident => {
-				if (resident.ok) {
-					resident.json
+			})
+			// .then(response => response.json())
+			.then(r => {
+				if (r.ok) {
+					r.json()
 					.then(
+						// console.log(resident)
 						(resident) => onLogin(resident) 
 					)
 				}
 			}
 			)
-			// .then(response => console.log(response))
-		// 	.then((r) => {
-		// 	if (r.ok) {
-		// 		r.json().then((resident) => {
-		// 			console.log(resident)
-		// 			onLogin(resident)
-		// 		});
-		// 	}
-		// });
 	}
 
 	return (<div>
@@ -56,15 +49,10 @@ function Login({ onLogin, onLogout, user }) {
 			value={password}
 			onChange={(e) => setPassword(e.target.value)}
 		/>
-		{user ? (
-			<Button type="submit" onClick={onLogout}>Logout</Button>
-		) : (
-			<Button type="submit">Login</Button>
-		)
-		} 
+		<Button type="submit" >Login</Button>
 		</Form>
 		</div>
-		
+
 	);
 }
 

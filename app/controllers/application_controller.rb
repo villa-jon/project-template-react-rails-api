@@ -23,7 +23,7 @@ class ApplicationController < ActionController::API
 
   def logged_in_user
       if decoded_token
-          user_id = decoded_token[0]['resident_id']
+          resident_id = decoded_token[0]['resident_id']
           return @resident = Resident.find_by(id: resident_id)
       end 
   end 

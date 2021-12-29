@@ -2,11 +2,11 @@ import React, {useEffect, useState} from "react"
 import Image from 'react-bootstrap/Image'
 import Login from './Login'
 import Signup from './Signup'
-
+// import { Button } from "react-bootstrap"
 import kids from "./kids.png";
 
 function Home() {
-	const [user, setUser] = useState(null);
+	const [user, setUser] = useState({ });
 
 	useEffect(() => {
 		fetch("/residents", {
@@ -18,16 +18,6 @@ function Home() {
 		  console.log(user)
 		  })
 		}, []);
-	
-	function logOut() {
-		fetch("/logout", { 
-		  method: "DELETE" })
-		  .then((r) => {
-		if (r.ok) {
-		  setUser(null);
-		  }
-		});
-	      }
 
 	function handleLogin(user) {
 		setUser(user);
@@ -40,13 +30,13 @@ function Home() {
 
 	return (
 		<div className="Home">
+			<Image src={kids} className="kids-style" rounded/>
 			<Login
 			onLogin={handleLogin}
-			onLogout={logOut}
-			resdient={user}/>
+			// onLogout={logOut}
+			resident={user}/>
 			<Signup setUser={setUser}/>
 			<br/>
-			<Image src={kids} className="kids-style" rounded/>
 		</div>
 
 	);
