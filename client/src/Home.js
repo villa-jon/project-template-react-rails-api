@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react"
 import Image from 'react-bootstrap/Image'
 import Login from './Login'
 import Signup from './Signup'
+import history from './history'
 // import { Button } from "react-bootstrap"
 import kids from "./kids.png";
 
@@ -21,7 +22,10 @@ function Home() {
 
 	function handleLogin(user) {
 		setUser(user);
-		console.log(user)
+		const token = user.token
+		localStorage.token = token
+		// console.log(history.push("/"))
+		history.push("/")
 	      }
 	   
 	// function handleLogout() {

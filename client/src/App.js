@@ -15,9 +15,9 @@ function App() {
 			method: "GET",
 		})
 		  .then(
-        (response) => {
-          if (response.ok) {
-            response.json()
+        (r) => {
+          if (r.ok) {
+            r.json()
             .then((user) => setUser(user));
           }
       // ;
@@ -31,36 +31,40 @@ function App() {
 
   function handleLogin(user) {
 		setUser(user);
-		console.log(user)
+		console.log(user.token)
 	      }
 
   return (
-    <div className="App">
+    <div 
+    // history={history}
+    className="App">
       <NavBar
       // onLogout={handleLogout}
       />
-      <Routes>
-        <Route path="/" 
-        element={<Home
-          onLogin={handleLogin}
-          resident={user}
-          onLogout={handleLogout}
-        />} />
-        <Route 
-        className="sixteen wide column centered"
-        path="/housing" 
-        element={<Housing
-        // search = {search}
-        // addHousing={handleAddHouse}
-        // updatedAr={handleUpdate}
-        // setShelters = {setShelters}
-        // setSearch = {setSearch}
-        // shelters = {displayHousing}
-        // handleUpdate={updatedArray}
-        />}/>
-        <Route path="/about" 
-        element={<About/>}/>
-      </Routes>
+      {/* <Router > */}
+        <Routes>
+          <Route path="/" 
+          element={<Home
+            onLogin={handleLogin}
+            resident={user}
+            onLogout={handleLogout}
+          />} />
+          <Route 
+          className="sixteen wide column centered"
+          path="/housing" 
+          element={<Housing
+          // search = {search}
+          // addHousing={handleAddHouse}
+          // updatedAr={handleUpdate}
+          // setShelters = {setShelters}
+          // setSearch = {setSearch}
+          // shelters = {displayHousing}
+          // handleUpdate={updatedArray}
+          />}/>
+          <Route path="/about" 
+          element={<About/>}/>
+        </Routes>
+      {/* </Router> */}
     </div>
   );
 }
