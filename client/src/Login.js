@@ -1,10 +1,13 @@
 import React, {useState} from 'react'
 import { Form, Button } from "react-bootstrap"
+import axios from "axios";
+
 // import { useHistory } from "react-router-dom";
 
 function Login({ onLogin }) {
 	const [name, setUsername] = useState({ });
 	const [password, setPassword] = useState("");
+	// const history = useHistory()
 
 	function handleSubmit(w) {
 		w.preventDefault();
@@ -20,17 +23,20 @@ function Login({ onLogin }) {
 			}),
 			})
 			// .then(response => response.json())
-			.then(r => {
-				if (r.ok) {
-					r.json()
-					.then(
-						// console.log(resident)
-						(resident) => onLogin(resident) 
-					)
-				}
-			}
-			)
+			.then((response) => response.json())
+			.then((resident) => onLogin(resident))
+			// history("/home")
 	}
+
+	// function pushRsponse() {
+	// 	if (resident.error) {
+	// 		alert(resident.error)
+	// 	} else {
+	// 		const token = resident.token
+	// 		localStorage.token = token
+	// 	}
+	// 	history.push("/home")
+	// }
 
 	return (<div>
 		<Form onSubmit={handleSubmit}>

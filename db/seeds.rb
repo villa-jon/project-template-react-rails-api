@@ -12,7 +12,7 @@ name: "Mid-Income Housing Institute", url: "https://urbanreststop.org/")
 Shelter.create(address: "1253 S. Jackson Street", rating: 5, description: "Urban Rest Stops: Provide showers, laundry, restrooms, and other hygiene services along with housing, employment, and shelter resources.", 
 name: "High-Income Housing Institute", url: "https://urbanreststop.org/")
 
-Resident.create(name: "Jon", password_digest: "Jvilla21!", age:"26", email:"villanuevajonathan606@gmail.com")
+Resident.create(name: "sample", password: "Sometime1")
 
 Review.create(comment: "ew!", rating: 5)
 

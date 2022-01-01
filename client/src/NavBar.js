@@ -25,15 +25,15 @@ function NavBar({ onLogout, resident }) {
               {/* <NavLink to="/catering" style={{padding: '10px'}}>Catering</NavLink> */}
            </Nav>
         </Container>
-        {resident ? (
-			<div>
-		 	<h1>Hello! {resident.name}</h1> 
+        <div>
+		 	<h1>Hello! {resident}</h1> 
 		 	<Button type="submit" onClick={logOut}>Logout</Button>
 			 </div>
+        {/* {resident ? (
 		 ) : (
 		 	<NavLink to="/">Login</NavLink>
 		 )
-		 }
+		 } */}
       </Navbar>    
     </div>
   );

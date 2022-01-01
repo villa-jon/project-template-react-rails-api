@@ -1,13 +1,17 @@
 import React, {useEffect, useState} from "react"
 import Image from 'react-bootstrap/Image'
+// import { useNavigate } from "react-router-dom"
 import Login from './Login'
 import Signup from './Signup'
 import history from './history'
 // import { Button } from "react-bootstrap"
 import kids from "./kids.png";
 
+
 function Home() {
 	const [user, setUser] = useState({ });
+	// const navigate = useNavigate(); 
+
 
 	useEffect(() => {
 		fetch("/residents", {
@@ -24,8 +28,9 @@ function Home() {
 		setUser(user);
 		const token = user.token
 		localStorage.token = token
-		// console.log(history.push("/"))
-		history.push("/")
+		console.log(history)
+		// history.push("/")
+		// navigate.push("/home")
 	      }
 	   
 	// function handleLogout() {

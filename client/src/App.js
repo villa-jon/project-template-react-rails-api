@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react"
 import { Route, Routes } from "react-router-dom"
+import {createBrowserHistory} from 'history' 
 import './App.css';
 import Home from './Home'
 // import HousingCard from './HousingCard'
@@ -9,6 +10,8 @@ import About from './About'
 
 function App() {
   const [user, setUser] = useState({});
+  // const navigate = useNavigate(); 
+  const history = createBrowserHistory()
 
   useEffect(() => {
 		fetch("/residents", {
@@ -24,28 +27,31 @@ function App() {
 		// setSearch(data.data);
 		  // console.log(user)
       })
-}, []);
+  }, []);
 
   function handleLogout() {
 		setUser({});}
 
-  function handleLogin(user) {
-		setUser(user);
-		console.log(user.token)
-	      }
+  // function handleLogin(user) {
+	// 	setUser(user);
+	// 	console.log(user.token)
+	//       }
 
   return (
     <div 
     // history={history}
     className="App">
       <NavBar
-      // onLogout={handleLogout}
+      onLogout={handleLogout}
       />
-      {/* <Router > */}
-        <Routes>
-          <Route path="/" 
+      <Routes history={history}>
+        {/* <Routes> */}
+    
+          
+       
+                  <Route path="/home" 
           element={<Home
-            onLogin={handleLogin}
+            // onLogin={handleLogin}
             resident={user}
             onLogout={handleLogout}
           />} />
@@ -63,8 +69,9 @@ function App() {
           />}/>
           <Route path="/about" 
           element={<About/>}/>
+          
         </Routes>
-      {/* </Router> */}
+    
     </div>
   );
 }

@@ -7,9 +7,14 @@ class ResidentsController < ApplicationController
 	end
 
 	def create
+		
 		resident = Resident.create(resident_params)
-		session[:resident_id] = resident.id
-		render json: resident, status: :created
+		# session[:resident_id] = resident.id
+		if resident.valid?
+			render json: resident, status: :created
+		else 
+			resident.errors.full_messages
+		end
 	end
 
 	def show
@@ -34,9 +39,9 @@ class ResidentsController < ApplicationController
 	end 
 
 	def resident_params
-		params.permit(
+		params.require(:resident).permit(
 			# :name, :username, :email, :password, :password_confirmation
-			:name, :password, :password_confirmation
+			:name, :password
 			)
 	end 
 

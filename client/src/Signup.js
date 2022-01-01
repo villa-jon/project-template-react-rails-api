@@ -1,10 +1,13 @@
 import { useState } from "react";
 import { Button, Form} from 'react-bootstrap'
+import { useNavigate } from 'react-router';
 
 function Signup({ setUser }) {
   const [name, setUsername] = useState("");
   const [password, setPassword] = useState("")
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
+  const history = useNavigate();
+
 
   const faqStyle = {
 		display: 'flex', 
@@ -18,25 +21,29 @@ function Signup({ setUser }) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log()
+    console.log(name, password)
     fetch("/residents", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ 
-        name,
-        password, 
-        password_confirmation: passwordConfirmation
+        resident: {
+          name: name,
+          password: password
+        }
+        // password_confirmation: passwordConfirmation
 
       }),
-    }).then((r) => {
-      if (r.ok) {
-        r.json().then((user) => {
-          setUser(user)
-          console.log("push the user to the next page")
+    }).then((response) => { 
+       response.json()
+        .then((user) => {
+          console.log(response)
+          setUser(user)  
+          console.log(user)
+          history('/home')
         });
-      }
+      
     });
   }
 
