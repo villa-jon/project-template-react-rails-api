@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { Button, Form} from 'react-bootstrap'
-import { useNavigate } from 'react-router';
+// import { useNavigate } from 'react-router';
 
 function Signup({ setUser }) {
   const [name, setUsername] = useState("");
   const [password, setPassword] = useState("")
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
-  const history = useNavigate();
+  // const history = useNavigate();
 
 
   const faqStyle = {
@@ -41,7 +41,7 @@ function Signup({ setUser }) {
           console.log(response)
           setUser(user)  
           console.log(user)
-          history('/home')
+          // history('/home')
         });
       
     });

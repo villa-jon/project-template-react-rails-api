@@ -19,10 +19,10 @@ function NavBar({ onLogout, resident }) {
           {/* <Login/> */}
           <Navbar.Brand href="#home">Welcome!</Navbar.Brand>
           <Nav className="me-auto">
-              <NavLink to="/" style={{padding: '10px'}}>Home</NavLink> 
+              <NavLink to="/home" style={{padding: '10px'}}>Home</NavLink> 
               <NavLink to="/about" style={{padding: '10px'}}>About</NavLink>
               <NavLink to="/housing" style={{padding: '10px'}}>Shelters</NavLink>
-              {/* <NavLink to="/catering" style={{padding: '10px'}}>Catering</NavLink> */}
+              <NavLink to="/loginpage" style={{padding: '10px'}}>Login</NavLink>
            </Nav>
         </Container>
         <div>

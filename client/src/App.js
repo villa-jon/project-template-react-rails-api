@@ -7,6 +7,7 @@ import Home from './Home'
 import Housing from './Housing'
 import NavBar from './NavBar';
 import About from './About'
+import LoginPage from "./LoginPage";
 
 function App() {
   const [user, setUser] = useState({});
@@ -32,10 +33,14 @@ function App() {
   function handleLogout() {
 		setUser({});}
 
-  // function handleLogin(user) {
-	// 	setUser(user);
-	// 	console.log(user.token)
-	//       }
+  function handleLogin(user) {
+		setUser(user);
+    setUser(user);
+		const token = user.token
+		localStorage.token = token
+		console.log(history.push)
+		// console.log(user.token)
+	      }
 
   return (
     <div 
@@ -45,15 +50,10 @@ function App() {
       onLogout={handleLogout}
       />
       <Routes history={history}>
-        {/* <Routes> */}
-    
-          
-       
-                  <Route path="/home" 
+        {/* <Routes> */}    
+          <Route path="/home" 
           element={<Home
-            // onLogin={handleLogin}
-            resident={user}
-            onLogout={handleLogout}
+            setUser={setUser}
           />} />
           <Route 
           className="sixteen wide column centered"
@@ -69,7 +69,12 @@ function App() {
           />}/>
           <Route path="/about" 
           element={<About/>}/>
-          
+          <Route path="/loginpage"
+          element={<LoginPage
+          onLogin={handleLogin}
+          resident={user}
+          />}
+          />
         </Routes>
     
     </div>

@@ -1,17 +1,14 @@
-import React, {useEffect, useState} from "react"
+import React, {useEffect} from "react"
 import Image from 'react-bootstrap/Image'
-// import { useNavigate } from "react-router-dom"
-import Login from './Login'
+// import { Navigate } from "react-router-dom"
 import Signup from './Signup'
-import history from './history'
+// import history from './history'
 // import { Button } from "react-bootstrap"
 import kids from "./kids.png";
 
-
-function Home() {
-	const [user, setUser] = useState({ });
+function Home({ setUser }) {
+	// const [user, setUser] = useState({});
 	// const navigate = useNavigate(); 
-
 
 	useEffect(() => {
 		fetch("/residents", {
@@ -24,15 +21,19 @@ function Home() {
 		  })
 		}, []);
 
-	function handleLogin(user) {
-		setUser(user);
-		const token = user.token
-		localStorage.token = token
-		console.log(history)
-		// history.push("/")
-		// navigate.push("/home")
-	      }
-	   
+	// if (!user) return <Login onLogin={setUser} />;
+
+	// function handleLogin(user) {
+	// 	setUser(user);
+	// 	const token = user.token
+	// 	localStorage.token = token
+	// 	console.log(history.push)
+	// 	// history.push("/")
+	// 	// if (user) {
+	// 	// 	return <Navigate to="/home"/>
+	// 	// }
+	//       }
+	  
 	// function handleLogout() {
 	// 	setUser(null);
 	//       }
@@ -40,11 +41,8 @@ function Home() {
 	return (
 		<div className="Home">
 			<Image src={kids} className="kids-style" rounded/>
-			<Login
-			onLogin={handleLogin}
-			// onLogout={logOut}
-			resident={user}/>
-			<Signup setUser={setUser}/>
+			<Signup 
+			setUser={setUser}/>
 			<br/>
 		</div>
 

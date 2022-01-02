@@ -1,12 +1,15 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import { Form, Button } from "react-bootstrap"
+import {createBrowserHistory} from 'history' 
 // import axios from "axios";
 
-// import { useHistory } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 function Login({ onLogin }) {
-	const [name, setUsername] = useState({ });
+	const [name, setUsername] = useState({});
 	const [password, setPassword] = useState("");
+	 const history = createBrowserHistory()
+	const [login, setLogin] = useState(true)
 	// const history = useHistory()
 
 	function handleSubmit(w) {
@@ -24,8 +27,11 @@ function Login({ onLogin }) {
 			})
 			// .then(response => response.json())
 			.then((response) => response.json())
-			.then((resident) => onLogin(resident))
-			// history("/home")
+			.then((resident) => {
+				onLogin(resident)
+				setLogin(true)
+			})
+			history.push("/home")
 	}
 
 	// function pushRsponse() {
@@ -48,6 +54,7 @@ function Login({ onLogin }) {
 			value={name}
 			onChange={(e) => setUsername(e.target.value)}
 		/>
+		<br/>
 		<Form.Label>Password: </Form.Label>
 		<input
 			type="password"
@@ -55,10 +62,13 @@ function Login({ onLogin }) {
 			value={password}
 			onChange={(e) => setPassword(e.target.value)}
 		/>
-		<Button type="submit" >Login</Button>
+		<Button 
+		tye="submit"
+		>Login
+		</Button>
+		{login ?  <Navigate to="/home" /> : null}
 		</Form>
 		</div>
-
 	);
 }
 
