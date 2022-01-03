@@ -3,14 +3,14 @@ import { Form, Button } from "react-bootstrap"
 import {createBrowserHistory} from 'history' 
 // import axios from "axios";
 
-import { Navigate } from "react-router-dom";
+// import { Navigate } from "react-router-dom";
 
-function Login({ onLogin }) {
-	const [name, setUsername] = useState({});
+function Login({ onLogin, resident }) {
+	const [name, setUsername] = useState("");
 	const [password, setPassword] = useState("");
 	 const history = createBrowserHistory()
-	const [login, setLogin] = useState(true)
-	// const history = useHistory()
+	const [login, setLogin] = useState(false)
+	// const history = createBrowserHistory()
 
 	function handleSubmit(w) {
 		w.preventDefault();
@@ -46,7 +46,7 @@ function Login({ onLogin }) {
 
 	return (<div>
 		<Form onSubmit={handleSubmit}>
-		<h3>Login With Username</h3>
+		<h3>Login</h3>
 		<Form.Label>Username: </Form.Label>
 		<input
 			type="text"
@@ -62,11 +62,17 @@ function Login({ onLogin }) {
 			value={password}
 			onChange={(e) => setPassword(e.target.value)}
 		/>
+		<br/>
 		<Button 
-		tye="submit"
+		type="submit"
 		>Login
 		</Button>
-		{login ?  <Navigate to="/home" /> : null}
+		{login ?  
+		(<div>
+			<p> Welcome, {resident.resident.name}!</p>
+		</div>)
+		: <p>Please log in!</p>}	
+		{console.log(resident)}
 		</Form>
 		</div>
 	);

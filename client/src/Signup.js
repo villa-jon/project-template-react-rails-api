@@ -1,14 +1,12 @@
 import { useState } from "react";
-import { Button, Form} from 'react-bootstrap'
+import { Button, Form, Modal, Col} from 'react-bootstrap'
 // import { useNavigate } from 'react-router';
 
-function Signup({ setUser }) {
+function Signup({ setUser, onHide, show }) {
   const [name, setUsername] = useState("");
   const [password, setPassword] = useState("")
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
   // const history = useNavigate();
-
-
   const faqStyle = {
 		display: 'flex', 
 		alignItems: 'center', 
@@ -32,8 +30,6 @@ function Signup({ setUser }) {
           name: name,
           password: password
         }
-        // password_confirmation: passwordConfirmation
-
       }),
     }).then((response) => { 
        response.json()
@@ -48,16 +44,21 @@ function Signup({ setUser }) {
   }
 
   return (
-    <Form 
-    style={faqStyle}
+    <Modal 
+    size="sm"
+    aria-labelledby="contained-modal-title-vcenter"
+    centered
+    hide={onHide}
+    show={show}
     onSubmit={handleSubmit}>
-      <h3>Sign Up </h3>
-      {/* <label htmlFor="username"> Username: </label>
-      <br/>
-      <input
-        type="text"
-      /> */}
-        <Form.Group className="mb-3" >
+      <Modal.Header>
+        <Modal.Title id="contained-modal-title-vcenter"> Sign Up </Modal.Title>
+      </Modal.Header>
+      <Form
+      style={faqStyle}
+      >
+        <Col xs="auto">
+          <Form.Group className="mb-3">
        <Form.Label>Username</Form.Label>
        <Form.Control 
         id="username"
@@ -67,7 +68,8 @@ function Signup({ setUser }) {
         <Form.Text className="text-muted">
         </Form.Text>
       </Form.Group>
-
+        </Col>
+      
       <Form.Group className="mb-3">
         <Form.Label>Password</Form.Label>
         <Form.Control 
@@ -87,9 +89,12 @@ function Signup({ setUser }) {
           onChange={(e) => setPasswordConfirmation(e.target.value)}
         />
       </Form.Group>
-      <br/>
-      <Button variant="primary" type="submit">Submit</Button>
-    </Form>
+      <Button className="button" variant="primary" type="submit">Submit</Button>
+      </Form>
+      <Modal.Footer>
+        <Button onClick={() => onHide()}>Close</Button>
+      </Modal.Footer>
+    </Modal>
   );
 }
 

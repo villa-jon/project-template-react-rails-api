@@ -3,14 +3,13 @@ import { Route, Routes } from "react-router-dom"
 import {createBrowserHistory} from 'history' 
 import './App.css';
 import Home from './Home'
-// import HousingCard from './HousingCard'
 import Housing from './Housing'
 import NavBar from './NavBar';
 import About from './About'
 import LoginPage from "./LoginPage";
 
 function App() {
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState(null);
   // const navigate = useNavigate(); 
   const history = createBrowserHistory()
 
@@ -31,7 +30,7 @@ function App() {
   }, []);
 
   function handleLogout() {
-		setUser({});}
+		setUser(null);}
 
   function handleLogin(user) {
 		setUser(user);
@@ -53,19 +52,12 @@ function App() {
         {/* <Routes> */}    
           <Route path="/home" 
           element={<Home
-            setUser={setUser}
+            doUser={setUser}
           />} />
           <Route 
           className="sixteen wide column centered"
           path="/housing" 
           element={<Housing
-          // search = {search}
-          // addHousing={handleAddHouse}
-          // updatedAr={handleUpdate}
-          // setShelters = {setShelters}
-          // setSearch = {setSearch}
-          // shelters = {displayHousing}
-          // handleUpdate={updatedArray}
           />}/>
           <Route path="/about" 
           element={<About/>}/>

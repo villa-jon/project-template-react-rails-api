@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
 	# before_action :authorize_request, except: :create
-  	before_action :find_resident, except: %i[create]
+  	# before_action :find_resident, except: %i[create]
 
 	def create
 		@resident = Resident.create(resident_params)
@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
 			render json: {error: 'failed to create a user'}
 		end 
 	end 
-	
+
 	def destroy
 		session.delete :resident_id
 		head :no_content

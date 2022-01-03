@@ -3,13 +3,15 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { Navbar, Container, Nav, Button } from "react-bootstrap";
 
-function NavBar({ onLogout, resident }) {
-  // const [user, setUser] = useState(null)
+function NavBar({ onLogout }) {
   
   function logOut() {
 		fetch("/logout", { 
 		  method: "DELETE" })
-		  .then(()=>onLogout());
+		  .then((r)=>
+      { if (r.ok) {
+        onLogout(null)
+      }});
 	      }
 
   return (
@@ -26,14 +28,8 @@ function NavBar({ onLogout, resident }) {
            </Nav>
         </Container>
         <div>
-		 	<h1>Hello! {resident}</h1> 
 		 	<Button type="submit" onClick={logOut}>Logout</Button>
 			 </div>
-        {/* {resident ? (
-		 ) : (
-		 	<NavLink to="/">Login</NavLink>
-		 )
-		 } */}
       </Navbar>    
     </div>
   );
