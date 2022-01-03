@@ -1,16 +1,24 @@
 import React, { useState } from 'react'
-import { Form, Button } from "react-bootstrap"
+import { Form, Button, Modal } from "react-bootstrap"
 import {createBrowserHistory} from 'history' 
-// import axios from "axios";
+// import {Link} from "react-router-dom"
 
-// import { Navigate } from "react-router-dom";
+const faqStyle = {
+	display: 'flex', 
+	alignItems: 'center', 
+	justifyContent: "center",
+	flexDirection: 'column',
+	paddingTop: '20px',
+	fontFamily: 'Montserrat',
+	fontWeight: 'bolder',
+paddingBottom: "1vh"
+}
 
-function Login({ onLogin, resident }) {
+function Login({ onLogin, resident, onHide, show }) {
 	const [name, setUsername] = useState("");
 	const [password, setPassword] = useState("");
 	 const history = createBrowserHistory()
 	const [login, setLogin] = useState(false)
-	// const history = createBrowserHistory()
 
 	function handleSubmit(w) {
 		w.preventDefault();
@@ -31,21 +39,20 @@ function Login({ onLogin, resident }) {
 				onLogin(resident)
 				setLogin(true)
 			})
-			history.push("/home")
+			// history.push("/home")
 	}
 
-	// function pushRsponse() {
-	// 	if (resident.error) {
-	// 		alert(resident.error)
-	// 	} else {
-	// 		const token = resident.token
-	// 		localStorage.token = token
-	// 	}
-	// 	history.push("/home")
-	// }
-
 	return (<div>
-		<Form onSubmit={handleSubmit}>
+		<Modal
+		size="sm"
+		aria-labelledby="contained-modal-title-vcenter"
+		centered
+		hide={onHide}
+		show={show}
+		>
+		<Form 
+		style={faqStyle}
+		onSubmit={handleSubmit}>
 		<h3>Login</h3>
 		<Form.Label>Username: </Form.Label>
 		<input
@@ -67,13 +74,12 @@ function Login({ onLogin, resident }) {
 		type="submit"
 		>Login
 		</Button>
-		{login ?  
-		(<div>
-			<p> Welcome, {resident.resident.name}!</p>
-		</div>)
-		: <p>Please log in!</p>}	
 		{console.log(resident)}
 		</Form>
+		<Modal.Footer>
+       		<Button onClick={() => onHide()}>Close</Button>
+      		</Modal.Footer>
+		</Modal>
 		</div>
 	);
 }

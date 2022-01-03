@@ -1,13 +1,26 @@
-import React from "react";
+import React,  {useState } from "react";
+import { Button } from "react-bootstrap";
 import Login from './Login'
 
 function LoginContainer({onLogin, resident}) {
+	const [modalShow, setModalShow] = useState(false);
+
+	const buttonStyle = {
+		paddingTop: "1vh" 
+	}
+
 	return(
-		<div>
+		<div className={buttonStyle}>
+			<Button variant="primary" onClick={() => setModalShow(true)}>
+        			Login
+      			</Button>
 			<Login
 			onLogin={onLogin}
-			// onLogout={logOut}
-			resident={resident}/>
+			resident={resident}
+			show={modalShow}
+        		onHide={() => setModalShow(false)}
+			/>
+			
 		</div>
 	)
 	

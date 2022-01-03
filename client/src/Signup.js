@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Button, Form, Modal, Col} from 'react-bootstrap'
+import { Button, Form, Modal } from 'react-bootstrap'
+import "./Signup.css"
 // import { useNavigate } from 'react-router';
 
 function Signup({ setUser, onHide, show }) {
@@ -14,7 +15,8 @@ function Signup({ setUser, onHide, show }) {
 		flexDirection: 'column',
 		paddingTop: '20px',
 		fontFamily: 'Montserrat',
-		fontWeight: 'bolder'
+		fontWeight: 'bolder',
+    paddingBottom: "1vh"
 	}
 
   function handleSubmit(e) {
@@ -27,16 +29,17 @@ function Signup({ setUser, onHide, show }) {
       },
       body: JSON.stringify({ 
         resident: {
-          name: name,
-          password: password
+          name,
+          password,
+          passwordConfirmation: passwordConfirmation
         }
       }),
     }).then((response) => { 
-       response.json()
+     response.json()
         .then((user) => {
-          console.log(response)
+          console.log("this is the first response"+ user.name)
           setUser(user)  
-          console.log(user)
+         
           // history('/home')
         });
       
@@ -57,8 +60,7 @@ function Signup({ setUser, onHide, show }) {
       <Form
       style={faqStyle}
       >
-        <Col xs="auto">
-          <Form.Group className="mb-3">
+      <Form.Group className="mb-3">
        <Form.Label>Username</Form.Label>
        <Form.Control 
         id="username"
@@ -68,7 +70,6 @@ function Signup({ setUser, onHide, show }) {
         <Form.Text className="text-muted">
         </Form.Text>
       </Form.Group>
-        </Col>
       
       <Form.Group className="mb-3">
         <Form.Label>Password</Form.Label>

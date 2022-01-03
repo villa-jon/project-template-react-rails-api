@@ -4,24 +4,13 @@ import kids from "./kids.png";
 import SignUpContainer from "./SignUpContainer";
 
 function Home({ doUser }) {
-	// const [user, setUser] = useState({});
-	// const navigate = useNavigate(); 
-
-	// useEffect(() => {
-	// 	fetch("/residents", {
-	// 		method: "GET",
-	// 	})
-	// 	  .then((user) => {
-	// 	  doUser(user);
-	// 	// setSearch(data.data);
-	// 	  console.log(user)
-	// 	  })
-	// 	}, []);
-
-	return (
+	const imageStyle ={
+		paddingTop: "10vh",
 		
-		<div className="Home">
-			<Image src={kids} className="kids-style" rounded/>
+	}
+	return (
+		<div className="Home" style={imageStyle} >
+			<Image src={kids}  rounded/>
 
 			<SignUpContainer
 			doUser={doUser}

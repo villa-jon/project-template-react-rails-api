@@ -6,7 +6,6 @@ import Home from './Home'
 import Housing from './Housing'
 import NavBar from './NavBar';
 import About from './About'
-import LoginPage from "./LoginPage";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -47,6 +46,8 @@ function App() {
     className="App">
       <NavBar
       onLogout={handleLogout}
+      onLogin={handleLogin}
+      resident={user}
       />
       <Routes history={history}>
         {/* <Routes> */}    
@@ -61,12 +62,9 @@ function App() {
           />}/>
           <Route path="/about" 
           element={<About/>}/>
-          <Route path="/loginpage"
+          {/* <Route path="/loginpage"
           element={<LoginPage
-          onLogin={handleLogin}
-          resident={user}
-          />}
-          />
+          />} */}
         </Routes>
     
     </div>
