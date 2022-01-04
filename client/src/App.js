@@ -1,6 +1,6 @@
-import React, {useEffect, useState} from "react"
+import React, { useState } from "react"
 import { Route, Routes } from "react-router-dom"
-import {createBrowserHistory} from 'history' 
+// import {createBrowserHistory} from 'history' 
 import './App.css';
 import Home from './Home'
 import Housing from './Housing'
@@ -10,33 +10,33 @@ import About from './About'
 function App() {
   const [user, setUser] = useState(null);
   // const navigate = useNavigate(); 
-  const history = createBrowserHistory()
+  // const history = createBrowserHistory()
 
-  useEffect(() => {
-		fetch("/residents", {
-			method: "GET",
-		})
-		  .then(
-        (r) => {
-          if (r.ok) {
-            r.json()
-            .then((user) => setUser(user));
-          }
-      // ;
-		// setSearch(data.data);
-		  // console.log(user)
-      })
-  }, []);
+  // useEffect(() => {
+	// 	fetch("/residents", {
+	// 		method: "GET",
+	// 	})
+	// 	  .then(
+  //       (r) => {
+  //         if (r.ok) {
+  //           r.json()
+  //           .then((user) => setUser(user));
+  //         }
+  //     // ;
+	// 	// setSearch(data.data);
+	// 	  // console.log(user)
+  //     })
+  // }, []);
 
   function handleLogout() {
 		setUser(null);}
 
   function handleLogin(user) {
 		setUser(user);
-    setUser(user);
+    // setUser(user);
 		const token = user.token
 		localStorage.token = token
-		console.log(history.push)
+		// console.log(history.push)
 		// console.log(user.token)
 	      }
 
@@ -47,9 +47,10 @@ function App() {
       <NavBar
       onLogout={handleLogout}
       onLogin={handleLogin}
-      resident={user}
+      users={user}
+      // name={name}
       />
-      <Routes history={history}>
+      <Routes>
         {/* <Routes> */}    
           <Route path="/home" 
           element={<Home

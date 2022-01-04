@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Form, Button, Modal } from "react-bootstrap"
-import {createBrowserHistory} from 'history' 
+// import {createBrowserHistory} from 'history' 
 // import {Link} from "react-router-dom"
 
 const faqStyle = {
@@ -15,20 +15,20 @@ paddingBottom: "1vh"
 }
 
 function Login({ onLogin, resident, onHide, show }) {
-	const [name, setUsername] = useState("");
-	const [password, setPassword] = useState("");
-	 const history = createBrowserHistory()
-	const [login, setLogin] = useState(false)
+	const [name, setUsername] = useState('');
+	const [password, setPassword] = useState('');
+	//  const history = createBrowserHistory()
+	// const [login, setLogin] = useState(false)
 
 	function handleSubmit(w) {
 		w.preventDefault();
-			fetch("/login", {
+			return fetch("/login", {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
 				"Accept" : "application/json"
 			},
-			body: JSON.stringify({ 
+			body: JSON.stringify({
 				name: name, 
 				password: password 
 			}),
@@ -37,7 +37,8 @@ function Login({ onLogin, resident, onHide, show }) {
 			.then((response) => response.json())
 			.then((resident) => {
 				onLogin(resident)
-				setLogin(true)
+				// return (resident)
+				// setLogin(true)
 			})
 			// history.push("/home")
 	}
