@@ -9,27 +9,11 @@ import About from './About'
 
 function App() {
   const [user, setUser] = useState(null);
-  // const navigate = useNavigate(); 
-  // const history = createBrowserHistory()
-
-  // useEffect(() => {
-	// 	fetch("/residents", {
-	// 		method: "GET",
-	// 	})
-	// 	  .then(
-  //       (r) => {
-  //         if (r.ok) {
-  //           r.json()
-  //           .then((user) => setUser(user));
-  //         }
-  //     // ;
-	// 	// setSearch(data.data);
-	// 	  // console.log(user)
-  //     })
-  // }, []);
 
   function handleLogout() {
-		setUser(null);}
+		setUser(null);
+    localStorage.clear()
+  }
 
   function handleLogin(user) {
 		setUser(user);

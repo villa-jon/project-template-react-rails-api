@@ -2,8 +2,9 @@ import React, {useEffect, useState} from "react"
 import Header from "./Header"
 import HousingCard from "./HousingCard"
 import NewHousingCard from "./NewHousingCard"
+import {useParams} from "react-router-dom"
 
-const cardStyle = {
+let cardStyle = {
 	fontFamily: 'Montserrat',
 	fontWeight: 'bolder',
 	// padding: '20px'
@@ -12,6 +13,7 @@ const cardStyle = {
 function Housing() {
 	const [shelters, setShelters] = useState([])
   	const [search, setSearch] = useState("")
+	const { id } = useParams()
 
 	useEffect(() => {
 		console.log("useEffect");
@@ -25,10 +27,24 @@ function Housing() {
 		  console.log(shelters)
 		  })
 		}, []);
+	
+	function handleDelete(w, id) {
+		console.log("id", id)
+		w.preventDefault()
+		fetch(`/shelters/${id}`, {
+			method: "DELETE", 
+		})
+		// console.log(fetch)
+		// .then((response) => response.json())
+		.then(() => {
+			handleRemoveItem(id)
+		})
+	}
 
-	let displayHousing = shelters.filter(
-		w => w.name.toLowerCase().includes(search.toLowerCase()))
-	      console.log(displayHousing)
+	function handleRemoveItem(id) {
+		const goneBs = shelters.filter((shelter) => shelter.id !== id)
+		 setShelters(goneBs);
+	       }
 	    
 	      function handleAddHouse(newHouse) {
 		  const updatedArray = [...shelters, newHouse];
@@ -46,6 +62,11 @@ function Housing() {
 		  setShelters(updatedHArray);
 	      }
 
+
+	      const displayHousing = shelters.filter((shelter) => {
+		return  shelter.name.toLowerCase().includes(search.toLowerCase())}
+		)
+	      console.log(displayHousing)
 	// const card = {
 	// 	backgroundColor: "#A7C7E7"
 	// }
@@ -58,14 +79,16 @@ function Housing() {
 				Resource Listings
 			</h1>
 			<Header 
-			shelters={displayHousing} 
+			shelters={shelters}
 			search={search} 
 			setSearch={setSearch}/>
 			<NewHousingCard addHousing={handleAddHouse}/>
 			<HousingCard 
-			shelters = {shelters}
+			// display={displayHousing}
+			shelters = {displayHousing}
 			 addHousing={handleAddHouse}
 			 updatedAr={handleUpdate}
+			 deleteHouse={handleDelete}
 			/>
 
 		</div>

@@ -26,7 +26,12 @@ function Home({ doUser }) {
 			style={faqStyle}
 			>Welcome to our website!</header>
 			<Image src={kids}  rounded/>
-
+			<br/>
+			<p>
+			<body>
+			Sign up below to stay updated and as always have a great day!
+			</body>
+			</p>
 			<SignUpContainer
 			doUser={doUser}
 			/>

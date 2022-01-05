@@ -47,7 +47,7 @@ function NewHousingCard({ addHousing }) {
         />
         <input
           type="number"
-          step="0.01"
+          step="1"
           placeholder="Rating"
           value={rating}
           onChange={(e) => setRating(parseFloat(e.target.value))}

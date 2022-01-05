@@ -4,7 +4,7 @@ import SearchBar from "./SearchBar"
 
 // Parent
 
-function Header({shelters, search, setSearch}) {	
+function Header({ search, setSearch}) {	
 
 	const faqStyle = {
 		display: 'flex', 
@@ -24,7 +24,7 @@ function Header({shelters, search, setSearch}) {
 		>
 			<div>
 			<SearchBar
-			shelters={shelters}
+			// shelters={displayHousing} 
 			search={search}
 			setSearch = {setSearch}
 			/>						

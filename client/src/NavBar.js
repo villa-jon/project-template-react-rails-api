@@ -9,10 +9,10 @@ const faqStyle = {
 	alignItems: 'center', 
 	justifyContent: "center",
 	flexDirection: 'column',
-	paddingTop: '20px',
+	// paddingTop: '20px',
 	fontFamily: 'Montserrat',
-	fontWeight: 'bolder',
-paddingBottom: "1vh"
+	// fontWeight: 'bolder',
+// paddingBottom: "1vh"
 }
 
 

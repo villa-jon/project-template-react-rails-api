@@ -7,14 +7,18 @@ function SearchBar({ search, setSearch }) {
 	border:"none", 
 	padding:"0.5rem"};
 
-
 	return (
-	  <input 
-	   style={BarStyling}
-	   value={search}
-	   placeholder={"search"}
-	   onChange={(w) => setSearch(w.target.value)}
+	<div>
+	<input 
+		type="text"
+		id="search"
+		style={BarStyling}
+	 	value={search}
+	        placeholder={"search"}
+	        onChange={(w) => setSearch(w.target.value)}
 	  />
+	</div>
+	  
 	);
 }
 
