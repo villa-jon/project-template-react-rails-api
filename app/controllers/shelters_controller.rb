@@ -5,8 +5,7 @@ class SheltersController < ApplicationController
 
 	def index
 		@shelters = Shelter.all
-		render json: @shelters
-		
+		render json: @shelters		
 	end
 
 	def show
