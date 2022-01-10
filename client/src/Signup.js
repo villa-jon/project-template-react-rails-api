@@ -31,7 +31,7 @@ function Signup({ setUser, onHide, show }) {
         resident: {
           name,
           password,
-          passwordConfirmation: passwordConfirmation
+          // passwordConfirmation: passwordConfirmation
         }
       }),
     }).then((response) => { 
@@ -81,7 +81,7 @@ function Signup({ setUser, onHide, show }) {
         placeholder="Password" />
       </Form.Group>
 
-      <Form.Group className="mb-3">
+      {/* <Form.Group className="mb-3">
         <Form.Label htmlFor="password_confirmation">Confirm Password</Form.Label>
         <Form.Control
           type="password"
@@ -89,7 +89,7 @@ function Signup({ setUser, onHide, show }) {
           value={passwordConfirmation}
           onChange={(e) => setPasswordConfirmation(e.target.value)}
         />
-      </Form.Group>
+      </Form.Group> */}
       <Button className="button" variant="primary" type="submit">Submit</Button>
       </Form>
       <Modal.Footer>

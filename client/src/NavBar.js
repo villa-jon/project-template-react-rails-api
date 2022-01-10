@@ -15,7 +15,6 @@ const faqStyle = {
 // paddingBottom: "1vh"
 }
 
-
 function NavBar({ onLogout, onLogin, users }) {
 
   function logOut() {

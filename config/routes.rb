@@ -1,12 +1,12 @@
 Rails.application.routes.draw do
   # namespace do 
-  resources :shelters
-  resources :reviews
-  resources :residents
-    post 'login', to: "auth#create"
-    post '/signup', to: 'residents#create'
-    # get 'persist', to: "auth#show"
-    delete "logout", to: "sessions#destroy"
+    resources :shelters
+    resources :reviews
+    resources :residents
+      post '/login', to: "auth#create"
+      post '/signup', to: 'residents#create'
+      # get 'persist', to: "auth#show"
+      delete "logout", to: "sessions#destroy"
   # end
   # Routing logic: fallback requests for React Router.
   # Leave this here to help deploy your app later!
