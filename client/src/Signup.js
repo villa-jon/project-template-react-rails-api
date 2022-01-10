@@ -6,7 +6,7 @@ import "./Signup.css"
 function Signup({ setUser, onHide, show }) {
   const [name, setUsername] = useState("");
   const [password, setPassword] = useState("")
-  const [passwordConfirmation, setPasswordConfirmation] = useState("");
+  // const [passwordConfirmation, setPasswordConfirmation] = useState("");
   // const history = useNavigate();
   const faqStyle = {
 		display: 'flex', 

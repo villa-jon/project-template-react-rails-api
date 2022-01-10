@@ -52,7 +52,7 @@ function NavBar({ onLogout, onLogin, users }) {
         <div style={faqStyle} >
           <Row  >
             <Col >
-              <p style={{width: '7em'}}>Hello, { users.resident.name } </p>
+              <p style={{width: '7em'}}>Hello, { users.name } </p>
             </Col>
             <Col>
               <Button type="submit" onClick={logOut}>Logout</Button>
