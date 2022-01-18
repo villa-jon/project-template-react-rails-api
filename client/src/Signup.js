@@ -37,7 +37,7 @@ function Signup({ setUser, onHide, show }) {
     }).then((response) => { 
      response.json()
         .then((user) => {
-          console.log("this is the first response"+ user.name)
+          // console.log("this is the first response"+ user.name)
           setUser(user)  
          
           // history('/home')
@@ -80,16 +80,6 @@ function Signup({ setUser, onHide, show }) {
         onChange={(w)=>setPassword(w.target.value)}
         placeholder="Password" />
       </Form.Group>
-
-      {/* <Form.Group className="mb-3">
-        <Form.Label htmlFor="password_confirmation">Confirm Password</Form.Label>
-        <Form.Control
-          type="password"
-          id="password_confirmation"
-          value={passwordConfirmation}
-          onChange={(e) => setPasswordConfirmation(e.target.value)}
-        />
-      </Form.Group> */}
       <Button className="button" variant="primary" type="submit">Submit</Button>
       </Form>
       <Modal.Footer>

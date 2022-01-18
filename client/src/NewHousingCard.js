@@ -28,7 +28,7 @@ function NewHousingCard({ addHousing }) {
   }
 
   return (
-    <div className="new-plant-form">
+    <div className="new-form">
       <h2>New Shelters</h2>
       <Form onSubmit={handleSubmit}>
         <input
