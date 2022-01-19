@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { Route, Routes } from "react-router-dom"
 // import {createBrowserHistory} from 'history' 
 import './App.css';
@@ -6,9 +6,35 @@ import Home from './Home'
 import Housing from './Housing'
 import NavBar from './NavBar';
 import About from './About'
+import Review from './Review'
 
 function App() {
   const [user, setUser] = useState(null);
+  const [review, setReviews]=useState('')
+
+  useEffect(() => {
+		fetch("/reviews", {
+		method: "GET",
+		headers: {
+			"Content-Type": "application/json",
+			"Accept" : "application/json"
+		},
+		})
+		// .then(response => response.json())
+		.then((response) => response.json()).then(item => {
+      console.log(item)
+      // console.log()
+      setReviews(item)
+      console.log(review)
+      
+    })
+		// .then((review) => {
+		// 	setReviews(review)
+    //   console.log('this is the review in app' + review)
+		// 	// return (resident)
+		// 	// setLogin(true)
+		// })
+	}, [])
 
   function handleLogout() {
 		setUser(null);
@@ -47,9 +73,8 @@ function App() {
           />}/>
           <Route path="/about" 
           element={<About/>}/>
-          {/* <Route path="/loginpage"
-          element={<LoginPage
-          />} */}
+          <Route path="/reviews"
+          element={<Review review={review}/>}/>
         </Routes>
     
     </div>

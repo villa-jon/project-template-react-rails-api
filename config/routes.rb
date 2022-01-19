@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  # namespace do 
+  # authenticate do 
     resources :shelters
     resources :reviews
     resources :residents

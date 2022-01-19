@@ -1,41 +1,38 @@
 class ReviewsController < ApplicationController
+	# before_action :find_review
 	rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
 
 	def index
 		# render file: Rails.root.join('public/index.html'
-		reviews = Review.all
-		render json: reviews
+		# byebug
+		@reviews = Review.all
+		# byebug
+		render json: @reviews
 	end
 
 	def show
-		reviews = Review.find(params[:id])
+		# reviews = Review.find(params[:id])
 		render json: review
 	end
 
 	def create
-		review = find_review
-		review.update(review_params)
-		render json: review
+		@reviews = Review.create(review_params)
+		render json: @reviews
 	end 
 
 	def destroy
-		review = find_review
-		review.destroy
-		head :no_content 
+		@reviews.destroy
 	end 
-
-	def update
-		
-	end
 
 	private 
 
-	def find_reveiw
+	def find_review
 		Review.find_by(id: params[:id])
 	end
 
 	def review_params
-		params.permit(:comment, :rating)
+		params.require(:review).permit(:comment, :rating)
+		# params.permit(:comment, :rating)
 	end 
 
 	def render_not_found_response

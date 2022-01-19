@@ -7,7 +7,6 @@ class ResidentsController < ApplicationController
 	end
 
 	def create
-		
 		resident = Resident.create(resident_params)
 		# session[:resident_id] = resident.id
 		if resident.valid?

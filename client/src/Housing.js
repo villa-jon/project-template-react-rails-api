@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react"
 import Header from "./Header"
 import HousingCard from "./HousingCard"
+import EditForm from "./EditForm"
 import NewHousingCard from "./NewHousingCard"
 import {useParams} from "react-router-dom"
 
@@ -11,8 +12,19 @@ let cardStyle = {
 }
 
 function Housing() {
+	let initialFormState = {
+		id: "",
+		address: "",
+		rating: "",
+		description: "",
+		name: "",
+		url: ""
+	}
+
 	const [shelters, setShelters] = useState([])
   	const [search, setSearch] = useState("")
+	const [editing, setEditing] = useState(false)
+	const [current, setCurrent] = useState(initialFormState)
 	const { id } = useParams()
 
 	useEffect(() => {
@@ -27,6 +39,22 @@ function Housing() {
 		  console.log(shelters)
 		  })
 		}, []);
+
+	const editHouse = (shelters) => {
+		console.log(shelters)
+		setEditing(true);
+		setCurrent({
+			id: shelters.id, 
+			address: shelters.address,
+			rating: shelters.rating, 
+			description: shelters.description, 
+			name: shelters.name, 
+			url: shelters.url
+
+		})
+	}
+
+
 	
 	function handleDelete(w, id) {
 		console.log("id", id)
@@ -46,20 +74,31 @@ function Housing() {
 		 setShelters(goneBs);
 	       }
 	    
-	      function handleAddHouse(newHouse) {
+	function handleAddHouse(newHouse) {
 		  const updatedArray = [...shelters, newHouse];
 		  setShelters(updatedArray);
 		      }
 	     
-	      function handleUpdate(update) {
-		 const updatedHArray = shelters.map((shelter) => {
-		    if (shelter.id === update.id) {
-		       return update;
-			  } else {
-		      return shelter;
-		      }
-		  });
-		  setShelters(updatedHArray);
+        function handleUpdate(updatedHE) {
+		// setEditing(false)
+
+		// fetch(`/shelters/${id}`, {
+		// 	method: "PATCH",
+		// 	headers: {
+		// 		"Content-Type": "application/json",
+		// 		"Accept" : "application/json"
+		// 	},
+		// 	body: JSON.stringify({
+		// 		shelters: {
+		// 			description: updatedHE.description, 
+		// 			name: updatedHE.name, 
+		// 		}
+		// 	}),
+		// 	})
+		// 	// .then(response => response.json())
+		// 	.then((response) => response.json())
+		
+		// setShelters(shelters.map(shelters => (shelters.id === updatedHE.id ? updatedHE : shelters)))
 	      }
 
 
@@ -83,14 +122,19 @@ function Housing() {
 			search={search} 
 			setSearch={setSearch}/>
 			<NewHousingCard addHousing={handleAddHouse}/>
+			{editing ? 
+			<EditForm
+			current={current}
+
+			/> :
 			<HousingCard 
 			// display={displayHousing}
+			editing={editing}
 			shelters = {displayHousing}
-			 addHousing={handleAddHouse}
-			 updatedAr={handleUpdate}
-			 deleteHouse={handleDelete}
-			/>
-
+			addHousing={handleAddHouse}
+			updatedAr={editHouse}
+			deleteHouse={handleDelete}
+			/>}
 		</div>
 	)
 }

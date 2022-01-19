@@ -26,6 +26,12 @@ class SheltersController < ApplicationController
 		head :no_content 
 	end 
 
+	def update
+		@shelters = Shelter.find_shelter
+		@shelters.update(shelter_params)
+		render json: @shelters	
+	end
+
 	private 
 
 	def find_shelter

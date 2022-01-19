@@ -38,7 +38,7 @@ function NavBar({ onLogout, onLogin, users }) {
               <NavLink to="/home" style={{padding: '10px'}}>Home</NavLink> 
               <NavLink to="/about" style={{padding: '10px'}}>About</NavLink>
               <NavLink to="/housing" style={{padding: '10px'}}>Shelters</NavLink>
-              {/* <NavLink to="/loginpage" style={{padding: '10px'}}>Login</NavLink> */}
+              <NavLink to="/reviews" style={{padding: '10px'}}>Reviews</NavLink>
            </Nav>
         </Container>
         {!users ? (

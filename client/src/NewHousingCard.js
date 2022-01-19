@@ -25,6 +25,11 @@ function NewHousingCard({ addHousing }) {
     })
       .then((r) => r.json())
       .then((shelters) => addHousing(shelters));
+      setName("")
+      setDescription("")
+      setRating("")
+      setAddress("")
+      setUrl("")
   }
 
   return (

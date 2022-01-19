@@ -2,7 +2,7 @@ import React from "react"
 import "./HousingCard.css"
 import { Card, Button } from "react-bootstrap"
 
-function HousingCard({shelters, deleteHouse}){
+function HousingCard({editing, shelters, deleteHouse, updatedAr }){
 
 	const housing = shelters.map((shelter) => 
 		<div className="cardParent">
@@ -16,6 +16,10 @@ function HousingCard({shelters, deleteHouse}){
 				</li> : <li>{shelter.description}</li> }
 				<li>{shelter.created_at}</li>
 			</Card.Text>
+			{
+				editing ? null :
+				<Button onClick={() => {updatedAr(shelter)}}>Edit</Button>
+			}
 			<Button variant="primary" href={shelter.url}>Link</Button>
 			<Button variant="primary" onClick={ (e) => deleteHouse(e, shelter.id)}>Delete</Button>
 		</Card.Body>
