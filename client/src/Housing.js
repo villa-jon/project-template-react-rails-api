@@ -53,8 +53,6 @@ function Housing() {
 
 		})
 	}
-
-
 	
 	function handleDelete(w, id) {
 		console.log("id", id)
@@ -80,32 +78,32 @@ function Housing() {
 		      }
 	     
         function handleUpdate(updatedHE) {
-		// setEditing(false)
+		setEditing(false)
 
-		// fetch(`/shelters/${id}`, {
-		// 	method: "PATCH",
-		// 	headers: {
-		// 		"Content-Type": "application/json",
-		// 		"Accept" : "application/json"
-		// 	},
-		// 	body: JSON.stringify({
-		// 		shelters: {
-		// 			description: updatedHE.description, 
-		// 			name: updatedHE.name, 
-		// 		}
-		// 	}),
-		// 	})
-		// 	// .then(response => response.json())
-		// 	.then((response) => response.json())
+		fetch(`/shelters/${id}`, {
+			method: "PATCH",
+			headers: {
+				"Content-Type": "application/json",
+				"Accept" : "application/json"
+			},
+			body: JSON.stringify({
+				shelters: {
+					description: updatedHE.description, 
+					name: updatedHE.name, 
+				}
+			}),
+			})
+			// .then(response => response.json())
+			.then((response) => response.json())
 		
 		// setShelters(shelters.map(shelters => (shelters.id === updatedHE.id ? updatedHE : shelters)))
 	      }
 
 
-	      const displayHousing = shelters.filter((shelter) => {
+	const displayHousing = shelters.filter((shelter) => {
 		return  shelter.name.toLowerCase().includes(search.toLowerCase())}
-		)
-	      console.log(displayHousing)
+	)
+	console.log(displayHousing)
 	// const card = {
 	// 	backgroundColor: "#A7C7E7"
 	// }
@@ -125,7 +123,7 @@ function Housing() {
 			{editing ? 
 			<EditForm
 			current={current}
-
+			onSubmit={handleUpdate}
 			/> :
 			<HousingCard 
 			// display={displayHousing}

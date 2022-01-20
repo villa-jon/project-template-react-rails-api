@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   # authenticate do 
-    resources :shelters
+    resources :shelters, only: [:index, :delete]
     resources :reviews
     resources :residents
       post '/login', to: "auth#create"

@@ -2,9 +2,9 @@ import React from "react"
 import "./HousingCard.css"
 import { Card, Button } from "react-bootstrap"
 
-function EditForm({current}){
+function EditForm({current, onSubmit}){
 	console.log(current)
-	
+
 	const housing = () => {
 		return (
 			<div className="cardParent">
@@ -15,15 +15,11 @@ function EditForm({current}){
 			<Card.Text >
 				<input
 				value={current.description}
-				// onChange={}
+				// onChange={() => }
 				>
 				</input>
 			</Card.Text>
-			{/* {
-				editing ? null :
-				<Button onClick={() => {updatedAr(shelter)}}>Edit</Button>
-			} */}
-			<Button variant="primary" href={current.url}>Link</Button>
+			<Button variant="primary" onSubmit={() => {onSubmit(current)}}>Submit</Button>
 			{/* <Button variant="primary" onClick={ (e) => deleteHouse(e, shelter.id)}>Delete</Button> */}
 		</Card.Body>
 		</div>
