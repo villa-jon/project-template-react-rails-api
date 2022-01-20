@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   # authenticate do 
-    resources :shelters, only: [:index, :delete]
+    resources :shelters, only: [:index, :destroy, :create]
     resources :reviews
-    resources :residents
+    resources :residents, only: [:index, :create, :destroy]
       post '/login', to: "auth#create"
       post '/signup', to: 'residents#create'
       # get 'persist', to: "auth#show"

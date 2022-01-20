@@ -1,7 +1,5 @@
 import React, { useState } from 'react'
 import { Form, Button, Modal } from "react-bootstrap"
-// import {createBrowserHistory} from 'history' 
-// import {Link} from "react-router-dom"
 
 const faqStyle = {
 	display: 'flex', 
@@ -33,14 +31,10 @@ function Login({ onLogin, resident, onHide, show }) {
 				password: password 
 			}),
 			})
-			// .then(response => response.json())
 			.then((response) => response.json())
 			.then((resident) => {
 				onLogin(resident)
-				// return (resident)
-				// setLogin(true)
 			})
-			// history.push("/home")
 	}
 
 	return (<div>
