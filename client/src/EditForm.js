@@ -2,7 +2,7 @@ import React from "react"
 import "./HousingCard.css"
 import { Card, Button } from "react-bootstrap"
 
-function EditForm({current, onSubmit}){
+function EditForm({current, onSubmit, users}){
 	console.log(current)
 
 	const housing = () => {
@@ -19,6 +19,10 @@ function EditForm({current, onSubmit}){
 				>
 				</input>
 			</Card.Text>
+			{/* {
+				!users ? ()
+				: null
+			} */}
 			<Button variant="primary" onSubmit={() => {onSubmit(current)}}>Submit</Button>
 			{/* <Button variant="primary" onClick={ (e) => deleteHouse(e, shelter.id)}>Delete</Button> */}
 		</Card.Body>

@@ -11,7 +11,7 @@ let cardStyle = {
 	// padding: '20px'
 }
 
-function Housing() {
+function Housing({users}) {
 	let initialFormState = {
 		id: "",
 		address: "",
@@ -120,8 +120,9 @@ function Housing() {
 			search={search} 
 			setSearch={setSearch}/>
 			<NewHousingCard addHousing={handleAddHouse}/>
-			{editing ? 
+			{!users ? 
 			<EditForm
+			// users={users}
 			current={current}
 			onSubmit={handleUpdate}
 			/> :

@@ -70,6 +70,7 @@ function App() {
           className="sixteen wide column centered"
           path="/housing" 
           element={<Housing
+          users={user}
           />}/>
           <Route path="/about" 
           element={<About/>}/>
