@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  # authenticate do 
+  # authenticate do     
     resources :shelters, only: [:index, :destroy, :create]
     resources :reviews
     resources :residents, only: [:index, :create, :destroy]

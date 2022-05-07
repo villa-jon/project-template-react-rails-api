@@ -26,8 +26,6 @@ function NavBar({ onLogout, onLogin, users }) {
      	 	}});
 	      }
  
-        // const name = 
-
   return (
     <div className="navber">
      <Navbar expand="lg" bg="light" variant="light">

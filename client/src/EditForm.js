@@ -2,12 +2,12 @@ import React from "react"
 import "./HousingCard.css"
 import { Card, Button } from "react-bootstrap"
 
-function EditForm({current, onSubmit, users}){
+function EditForm({current, onSubmit, setCurrent}){
 	console.log(current)
 
 	const housing = () => {
 		return (
-			<div className="cardParent">
+		<div className="cardParent">
 		<Card border="dark" className="card"  >
 		<div className="cardText" key={current.id}>
 		<Card.Body className="cardText">
@@ -15,16 +15,11 @@ function EditForm({current, onSubmit, users}){
 			<Card.Text >
 				<input
 				value={current.description}
-				// onChange={() => }
+				onChange={(e) => setCurrent(e.target.value)}
 				>
 				</input>
 			</Card.Text>
-			{/* {
-				!users ? ()
-				: null
-			} */}
-			<Button variant="primary" onSubmit={() => {onSubmit(current)}}>Submit</Button>
-			{/* <Button variant="primary" onClick={ (e) => deleteHouse(e, shelter.id)}>Delete</Button> */}
+			<Button variant="primary" onClick={() => {onSubmit(current)}}>Submit</Button>
 		</Card.Body>
 		</div>
 		</Card>					

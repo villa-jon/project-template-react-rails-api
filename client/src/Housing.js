@@ -3,7 +3,7 @@ import Header from "./Header"
 import HousingCard from "./HousingCard"
 import EditForm from "./EditForm"
 import NewHousingCard from "./NewHousingCard"
-import {useParams} from "react-router-dom"
+// import {useParams} from "react-router-dom"
 
 let cardStyle = {
 	fontFamily: 'Montserrat',
@@ -11,7 +11,7 @@ let cardStyle = {
 	// padding: '20px'
 }
 
-function Housing({users}) {
+function Housing() {
 	let initialFormState = {
 		id: "",
 		address: "",
@@ -25,7 +25,7 @@ function Housing({users}) {
   	const [search, setSearch] = useState("")
 	const [editing, setEditing] = useState(false)
 	const [current, setCurrent] = useState(initialFormState)
-	const { id } = useParams()
+	// const { id } = useParams()
 
 	useEffect(() => {
 		console.log("useEffect");
@@ -79,8 +79,8 @@ function Housing({users}) {
 	     
         function handleUpdate(updatedHE) {
 		setEditing(false)
-
-		fetch(`/shelters/${id}`, {
+		debugger
+		fetch(`/shelters/${current.id}`, {
 			method: "PATCH",
 			headers: {
 				"Content-Type": "application/json",
@@ -98,7 +98,6 @@ function Housing({users}) {
 		
 		// setShelters(shelters.map(shelters => (shelters.id === updatedHE.id ? updatedHE : shelters)))
 	      }
-
 
 	const displayHousing = shelters.filter((shelter) => {
 		return  shelter.name.toLowerCase().includes(search.toLowerCase())}
@@ -120,9 +119,10 @@ function Housing({users}) {
 			search={search} 
 			setSearch={setSearch}/>
 			<NewHousingCard addHousing={handleAddHouse}/>
-			{!users ? 
+			{editing ? 
 			<EditForm
 			// users={users}
+			setCurrent={setCurrent}
 			current={current}
 			onSubmit={handleUpdate}
 			/> :

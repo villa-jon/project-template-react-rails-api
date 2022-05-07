@@ -4,8 +4,4 @@ class Resident < ApplicationRecord
 
 	validates :name, presence: true, uniqueness: true 
 
-	# def happy 
-	# 	binding.irb 
-	# 	self.	
-	# end 
 end
